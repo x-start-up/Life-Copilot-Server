@@ -1,0 +1,827 @@
+openapi: 3.0.0
+info:
+  title: Todo API
+  version: 1.0.0
+paths:
+  /v1/api/user/login:
+    post:
+      tags:
+        - UserService
+      summary: Login
+      operationId: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResp'
+  /v1/api/user/register:
+    post:
+      tags:
+        - UserService
+      summary: Register
+      operationId: Register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterResp'
+  /v1/api/user/send_code:
+    post:
+      tags:
+        - UserService
+      summary: SendCode
+      operationId: SendCode
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendCodeReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendCodeResp'
+  /v1/api/user/me:
+    get:
+      tags:
+        - UserService
+      summary: GetUser
+      operationId: GetUser
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserResp'
+  /v1/api/category/get_all_categories:
+    get:
+      tags:
+        - CategoryService
+      summary: GetAllCategories
+      operationId: GetAllCategories
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllCategoriesResp'
+  /v1/api/category/{category_id}:
+    get:
+      tags:
+        - CategoryService
+      summary: GetCategory
+      operationId: GetCategory
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCategoryResp'
+    put:
+      tags:
+        - CategoryService
+      summary: UpdateCategory
+      operationId: UpdateCategory
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCategoryResp'
+    delete:
+      tags:
+        - CategoryService
+      summary: DeleteCategory
+      operationId: DeleteCategory
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteCategoryResp'
+  /v1/api/category:
+    post:
+      tags:
+        - CategoryService
+      summary: CreateCategory
+      operationId: CreateCategory
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCategoryResp'
+  /v1/api/todo/get_all_todos:
+    get:
+      tags:
+        - TodoService
+      summary: GetAllTodos
+      operationId: GetAllTodos
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllTodosResp'
+  /v1/api/todo/{todo_id}:
+    get:
+      tags:
+        - TodoService
+      summary: GetTodo
+      operationId: GetTodo
+      parameters:
+        - name: todo_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTodoResp'
+    put:
+      tags:
+        - TodoService
+      summary: UpdateTodo
+      operationId: UpdateTodo
+      parameters:
+        - name: todo_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTodoReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateTodoResp'
+    delete:
+      tags:
+        - TodoService
+      summary: DeleteTodo
+      operationId: DeleteTodo
+      parameters:
+        - name: todo_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTodoResp'
+  /v1/api/todo:
+    post:
+      tags:
+        - TodoService
+      summary: CreateTodo
+      operationId: CreateTodo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodoReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTodoResp'
+  /v1/api/todo/create_by_audio:
+    post:
+      tags:
+        - TodoService
+      summary: CreateTodosByAudio
+      operationId: CreateTodosByAudio
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTodosByAudioResp'
+  /v1/api/todo/create_by_nl:
+    post:
+      tags:
+        - TodoService
+      summary: CreateTodosByNL
+      operationId: CreateTodosByNL
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodosByNLReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTodosByNLResp'
+  /v1/api/pusher/get_all_pushers:
+    get:
+      tags:
+        - PusherService
+      summary: GetAllPushers
+      operationId: GetAllPushers
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllPushersResp'
+  /v1/api/pusher/{pusher_id}:
+    get:
+      tags:
+        - PusherService
+      summary: GetPusher
+      operationId: GetPusher
+      parameters:
+        - name: pusher_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPusherResp'
+    put:
+      tags:
+        - PusherService
+      summary: UpdatePusher
+      operationId: UpdatePusher
+      parameters:
+        - name: pusher_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePusherReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePusherResp'
+    delete:
+      tags:
+        - PusherService
+      summary: DeletePusher
+      operationId: DeletePusher
+      parameters:
+        - name: pusher_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletePusherResp'
+  /v1/api/pusher:
+    post:
+      tags:
+        - PusherService
+      summary: CreatePusher
+      operationId: CreatePusher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePusherReq'
+      responses:
+        200:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePusherResp'
+
+components:
+  schemas:
+    Empty:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    User:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+        username:
+          type: string
+        email:
+          type: string
+        avatar:
+          type: string
+    Category:
+      type: object
+      properties:
+        category_id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        creator:
+          type: string
+    Todo:
+      type: object
+      properties:
+        todo_id:
+          type: integer
+          format: int32
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        deadline:
+          type: string
+        status:
+          type: string
+        user_id:
+          type: integer
+          format: int32
+        create_at:
+          type: string
+        update_at:
+          type: string
+    Pusher:
+      type: object
+      properties:
+        pusher_id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        config:
+          type: string
+        type:
+          type: string
+        user_id:
+          type: integer
+          format: int32
+        is_active:
+          type: boolean
+    LoginReq:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+    LoginResp:
+      type: object
+      properties:
+        expire:
+          type: string
+        token:
+          type: string
+    RegisterReq:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        email_code:
+          type: string
+    RegisterResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/User'
+    SendCodeReq:
+      type: object
+      properties:
+        email:
+          type: string
+    SendCodeResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    GetUserReq:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          format: int32
+    GetUserResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/User'
+    GetAllCategoriesReq:
+      type: object
+    GetAllCategoriesResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Category'
+    GetCategoryReq:
+      type: object
+      properties:
+        category_id:
+          type: integer
+          format: int32
+    GetCategoryResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Category'
+    CreateCategoryReq:
+      type: object
+      properties:
+        name:
+          type: string
+    CreateCategoryResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Category'
+    UpdateCategoryReq:
+      type: object
+      properties:
+        category_id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    UpdateCategoryResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Category'
+    DeleteCategoryReq:
+      type: object
+      properties:
+        category_id:
+          type: integer
+          format: int32
+    DeleteCategoryResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    GetAllTodosReq:
+      type: object
+    GetAllTodosResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Todo'
+    GetTodoReq:
+      type: object
+      properties:
+        todo_id:
+          type: integer
+          format: int32
+    GetTodoResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Todo'
+    CreateTodoReq:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        deadline:
+          type: string
+    CreateTodoResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Todo'
+    UpdateTodoReq:
+      type: object
+      properties:
+        todo_id:
+          type: integer
+          format: int32
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        deadline:
+          type: string
+        status:
+          type: string
+    UpdateTodoResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Todo'
+    DeleteTodoReq:
+      type: object
+      properties:
+        todo_id:
+          type: integer
+          format: int32
+    DeleteTodoResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+    CreateTodosByAudioReq:
+      type: object
+      properties:
+        audio:
+          type: string
+          format: binary
+    CreateTodosByAudioResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Todo'
+    CreateTodosByNLReq:
+      type: object
+      properties:
+        nl:
+          type: string
+    CreateTodosByNLResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Todo'
+    GetAllPushersReq:
+      type: object
+    GetAllPushersResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pusher'
+    GetPusherReq:
+      type: object
+      properties:
+        pusher_id:
+          type: integer
+          format: int32
+    GetPusherResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Pusher'
+    CreatePusherReq:
+      type: object
+      properties:
+        name:
+          type: string
+        config:
+          type: string
+        type:
+          type: string
+    CreatePusherResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Pusher'
+    UpdatePusherReq:
+      type: object
+      properties:
+        pusher_id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        config:
+          type: string
+        type:
+          type: string
+        is_active:
+          type: boolean
+    UpdatePusherResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/Pusher'
+    DeletePusherReq:
+      type: object
+      properties:
+        pusher_id:
+          type: integer
+          format: int32
+    DeletePusherResp:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

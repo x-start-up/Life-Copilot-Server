@@ -23,7 +23,7 @@ struct Todo {
   2: string title,
   3: string description,
   4: string type,
-  5: string start_time
+  5: string start_time,
   6: string deadline,
   7: string status,
   8: i32 user_id,

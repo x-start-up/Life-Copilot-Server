@@ -23,11 +23,12 @@ struct Todo {
   2: string title,
   3: string description,
   4: string type,
-  5: string deadline,
-  6: string status,
-  7: i32 user_id,
-  8: string create_at,
-  9: string update_at
+  5: string start_time,
+  6: string deadline,
+  7: string status,
+  8: i32 user_id,
+  9: string create_at,
+  10: string update_at
 }
 
 struct Pusher {

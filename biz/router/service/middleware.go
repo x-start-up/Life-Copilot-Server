@@ -145,3 +145,38 @@ func _sendcodeMw() []app.HandlerFunc {
 	// your code...
 	return nil
 }
+
+func _createpusherMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _createcategoryMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _getallcategoriesMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _getallpushersMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _createtodoMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _createtodosbyaudioMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
+
+func _getalltodosMw() []app.HandlerFunc {
+	// your code...
+	return nil
+}
